@@ -16,13 +16,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 import sys
-if sys.version_info[:2] < (2, 6) or sys.version_info[:2] >= (3, 0):
-    print("Sorry, requires Python 2.6 or 2.7.")
+
+if sys.hexversion < 0x03050000:
+    print("Sorry, requires Python 3.5 or above")
+    print("You can read more at: https://sabnzbd.org/python3")
     sys.exit(1)
 
 import time
 import subprocess
-
 
 try:
     import win32api
@@ -32,6 +33,7 @@ try:
     import win32event
     import win32service
     import pywintypes
+    import servicemanager
 except ImportError:
     print("Sorry, requires Python module PyWin32.")
     sys.exit(1)
@@ -43,41 +45,33 @@ from util.apireg import del_connection_info, set_connection_info
 WIN_SERVICE = None
 
 
-def HandleCommandLine(allow_service=True):
-    """ Handle command line for a Windows Service
-        Prescribed name that will be called by Py2Exe.
-        You MUST set 'cmdline_style':'custom' in the package.py!
-    """
-    win32serviceutil.HandleCommandLine(SABHelper)
-
-
 def start_sab():
-    return subprocess.Popen('net start SABnzbd', stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    return subprocess.Popen("net start SABnzbd", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
 
 def main():
 
     mail = MailSlot()
     if not mail.create(10):
-        return '- Cannot create Mailslot'
+        return "- Cannot create Mailslot"
 
     active = False  # SABnzbd should be running
-    counter = 0     # Time allowed for SABnzbd to be silent
+    counter = 0  # Time allowed for SABnzbd to be silent
     while True:
         msg = mail.receive()
         if msg:
-            if msg == 'restart':
+            if msg == "restart":
                 time.sleep(1.0)
                 counter = 0
                 del_connection_info(user=False)
                 start_sab()
-            elif msg == 'stop':
+            elif msg == "stop":
                 active = False
                 del_connection_info(user=False)
-            elif msg == 'active':
+            elif msg == "active":
                 active = True
                 counter = 0
-            elif msg.startswith('api '):
+            elif msg.startswith("api "):
                 active = True
                 counter = 0
                 _cmd, url = msg.split()
@@ -90,28 +84,25 @@ def main():
                 counter = 0
                 start_sab()
 
-        rc = win32event.WaitForMultipleObjects((WIN_SERVICE.hWaitStop,
-             WIN_SERVICE.overlapped.hEvent), 0, 1000)
+        rc = win32event.WaitForMultipleObjects((WIN_SERVICE.hWaitStop, WIN_SERVICE.overlapped.hEvent), 0, 1000)
         if rc == win32event.WAIT_OBJECT_0:
             del_connection_info(user=False)
             mail.disconnect()
-            return ''
+            return ""
 
 
 ##############################################################################
 # Windows Service Support
 ##############################################################################
-import servicemanager
 
 
 class SABHelper(win32serviceutil.ServiceFramework):
     """ Win32 Service Handler """
 
-    _svc_name_ = 'SABHelper'
-    _svc_display_name_ = 'SABnzbd Helper'
+    _svc_name_ = "SABHelper"
+    _svc_display_name_ = "SABnzbd Helper"
     _svc_deps_ = ["EventLog", "Tcpip"]
-    _svc_description_ = 'Automated downloading from Usenet. ' \
-                        'This service helps SABnzbd to restart itself.'
+    _svc_description_ = "Automated downloading from Usenet. " "This service helps SABnzbd to restart itself."
 
     def __init__(self, args):
         global WIN_SERVICE
@@ -123,32 +114,38 @@ class SABHelper(win32serviceutil.ServiceFramework):
         WIN_SERVICE = self
 
     def SvcDoRun(self):
-        msg = 'SABHelper-service'
-        self.Logger(servicemanager.PYS_SERVICE_STARTED, msg + ' has started')
+        msg = "SABHelper-service"
+        self.Logger(servicemanager.PYS_SERVICE_STARTED, msg + " has started")
         res = main()
-        self.Logger(servicemanager.PYS_SERVICE_STOPPED, msg + ' has stopped' + res)
+        self.Logger(servicemanager.PYS_SERVICE_STOPPED, msg + " has stopped" + res)
 
     def SvcStop(self):
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
         win32event.SetEvent(self.hWaitStop)
 
     def Logger(self, state, msg):
-        win32evtlogutil.ReportEvent(self._svc_display_name_,
-                                    state, 0,
-                                    servicemanager.EVENTLOG_INFORMATION_TYPE,
-                                    (self._svc_name_, str(msg)))
+        win32evtlogutil.ReportEvent(
+            self._svc_display_name_, state, 0, servicemanager.EVENTLOG_INFORMATION_TYPE, (self._svc_name_, str(msg))
+        )
 
     def ErrLogger(self, msg, text):
-        win32evtlogutil.ReportEvent(self._svc_display_name_,
-                                    servicemanager.PYS_SERVICE_STOPPED, 0,
-                                    servicemanager.EVENTLOG_ERROR_TYPE,
-                                    (self._svc_name_, str(msg)),
-                                    str(text))
+        win32evtlogutil.ReportEvent(
+            self._svc_display_name_,
+            servicemanager.PYS_SERVICE_STOPPED,
+            0,
+            servicemanager.EVENTLOG_ERROR_TYPE,
+            (self._svc_name_, str(msg)),
+            str(text),
+        )
 
 
 ##############################################################################
 # Platform specific startup code
 ##############################################################################
-if __name__ == '__main__':
-
-    win32serviceutil.HandleCommandLine(SABHelper, argv=sys.argv)
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        servicemanager.Initialize()
+        servicemanager.PrepareToHostSingle(SABHelper)
+        servicemanager.StartServiceCtrlDispatcher()
+    else:
+        win32serviceutil.HandleCommandLine(SABHelper, argv=sys.argv)

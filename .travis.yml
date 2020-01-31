@@ -50,6 +50,8 @@ script:
   # Force code-style for folders that we already did, only on 1 job
   - if [[ $TRAVIS_PYTHON_VERSION == "3.7" ]]; then
       python3 -m black
+        SABnzbd.py
+        SABHelper.py
         scripts
         tools
         tests
