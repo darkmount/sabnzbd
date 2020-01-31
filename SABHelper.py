@@ -99,6 +99,7 @@ def main():
 class SABHelper(win32serviceutil.ServiceFramework):
     """ Win32 Service Handler """
 
+    _exe_name_ = "SABnzbd-helper.exe"
     _svc_name_ = "SABHelper"
     _svc_display_name_ = "SABnzbd Helper"
     _svc_deps_ = ["EventLog", "Tcpip"]
