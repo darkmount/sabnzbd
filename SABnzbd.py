@@ -1611,6 +1611,7 @@ if sabnzbd.WIN32:
     class SABnzbd(win32serviceutil.ServiceFramework):
         """ Win32 Service Handler """
 
+        _exe_name_ = "SABnzbd.exe"
         _svc_name_ = "SABnzbd"
         _svc_display_name_ = "SABnzbd Binary Newsreader"
         _svc_deps_ = ["EventLog", "Tcpip", "SABHelper"]
