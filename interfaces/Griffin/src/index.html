@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--#set $active_lang=$active_lang.replace('_', '-').lower()#-->
+<html lang="$active_lang">
+  <head>
+    <!--
+            Griffin
+            By darkmount (2020) - github.com/darkmount
+        -->
+    <title>SABnzbd</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="SABnzbd" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="SABnzbd" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Make translations available in scripts -->
+    <script type="text/javascript">
+      var STATE = {
+        apiKey: "$session",
+        displayLang: "$active_lang",
+        sabSpeedHistory: [$bytespersec_list],
+        newRelease: {
+          version: "$new_release",
+          newReleaseUrl: "$new_rel_url"
+        },
+        translations: {
+          checking: "$T('post-Checking')",
+          chooseFile: "$T('Glitter-chooseFile')",
+          clearWarn: "$T('Glitter-confirmClearWarnings')",
+          completed: "$T('post-Completed')",
+          defaultText: "$T('default')",
+          directUnpack: "$T('opt-direct_unpack')",
+          download: "$T('stage-download')",
+          duplicate: "$T('Glitter-duplicate')",
+          encrypted: "$T('Glitter-encrypted')",
+          error: "$T('Glitter-error')",
+          extracting: "$T('post-Extracting')",
+          failed: "$T('post-Failed')",
+          fetch: "$T('Glitter-fetch')",
+          fetching: "$T('post-Fetching')",
+          fileJoin: "$T('stage-filejoin')",
+          filtered: "$T('Glitter-filtered')",
+          force: "$T('pr-force')",
+          glitterTips: "$T('Glitter-glitterTips')",
+          high: "$T('pr-high')",
+          incomplete: "$T('Glitter-incomplete')",
+          info: "$T('log-info')",
+          left: "$T('Glitter-left')",
+          low: "$T('pr-low')",
+          minutes: "$T('mins')",
+          misingArt: "$T('missingArt')",
+          moreText: "$T('Glitter-more')",
+          moving: "$T('post-Moving')",
+          needLogin: "$T('explain-needNewLogin')",
+          noLocalStorage: "$T('Glitter-noLocalStorage')",
+          none: "$T('None')",
+          normal: "$T('pr-normal')",
+          noSelect: "$T('Glitter-noSelect')",
+          orphanedJobsMsg: "$T('explain-orphans')",
+          paused: "$T('post-Paused')",
+          pauseFor: "$T('pauseFor')",
+          pausePromptFail: "$T('Glitter-pausePromptFail')",
+          ppDelete: "$T('pp-delete')",
+          ppDownload: "$T('pp-none')",
+          ppRepair: "$T('pp-repair')",
+          ppUnpack: "$T('pp-unpack')",
+          queued: "$T('post-Queued')",
+          quickCheck: "$T('post-QuickCheck')",
+          removeDow1: "$T('Glitter-confirmClear1Download')",
+          removeDown: "$T('Glitter-confirmClearDownloads')",
+          repair: "$T('explain-Repair')",
+          repairing: "$T('post-Repairing')",
+          restart: "$T('explain-Restart')",
+          retryAll: "$T('link-retryAll')",
+          running: "$T('post-Running')",
+          script: "$T('stage-script')",
+          sendThanks: "$T('Glitter-sendThanks')",
+          servers: "$T('stage-servers')",
+          shutdown: "$T('shutdownOK?')",
+          source: "$T('stage-source')",
+          stageRepair: "$T('stage-repair')",
+          stop: "$T('pr-stop')",
+          tooLarge: "$T('Glitter-tooLarge')",
+          unpack: "$T('stage-unpack')",
+          unwanted: "$T('Glitter-unwanted')",
+          updateAvailable: "$T('Glitter-updateAvailable')",
+          useCache: "$T('explain-cache_limitstr')",
+          verifying: "$T('post-Verifying')",
+          waitSec: "$T('Glitter-waitSec')",
+          warning: "$T('Glitter-warning')"
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
