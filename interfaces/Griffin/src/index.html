@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--#set $active_lang=$active_lang.replace('_', '-').lower()#-->
-<html lang="$active_lang">
+<html lang="$active_lang" class="height--full width--full">
   <head>
     <!--
-            Griffin
-            By darkmount (2020) - github.com/darkmount
-        -->
+        Griffin
+        By darkmount (2020) - github.com/darkmount
+    -->
     <title>SABnzbd</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,7 +21,7 @@
     <meta name="msapplication-navbutton-color" content="#000000" />
     <meta name="theme-color" content="#000000" />
 
-    <!-- Make translations available in scripts -->
+    <!-- Provide initial state for redux -->
     <script type="text/javascript">
       var STATE = {
         apiKey: "$session",
@@ -100,7 +100,7 @@
       };
     </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="height--full width--full margin--none bg-yellow--grad">
+    <div id="root" class="height--full width--full"></div>
   </body>
 </html>
