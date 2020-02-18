@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    browser: true,
+  },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -11,6 +14,9 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2018,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   settings: {
     react: {
