@@ -4,7 +4,8 @@ const LiveReloadPlugin = require("webpack-livereload-plugin");
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, "templates/static")
+    path: path.resolve(__dirname, "templates/static"),
+    publicPath: "./static/"
   },
   module: {
     rules: [
@@ -24,6 +25,11 @@ module.exports = {
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
   },
   plugins: [
     new LiveReloadPlugin({ appendScriptTag: true }),
