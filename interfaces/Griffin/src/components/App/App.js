@@ -11,31 +11,23 @@ const History = lazy(() => import("../../pages/History"));
 
 const Nav = () => (
   <nav>
-    <ul>
-      <li>
-        <Link to="./">Home</Link>
-      </li>
-      <li>
-        <Link to="./queue">Queue</Link>
-      </li>
-      <li>
-        <Link to="./history">History</Link>
-      </li>
-    </ul>
+    <Link to="/">Home</Link>
+    <Link to="/queue">Queue</Link>
+    <Link to="/history">History</Link>
   </nav>
 );
 
-export const App = props => {
+export const App = () => {
   return (
     <Router basename={"/sabnzbd"}>
       <ErrorBoundary>
+        <GlobalStyles />
         <Logo
           className={css`
             width: 48px;
           `}
         />
         <Nav />
-        <GlobalStyles />
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={Home} />
