@@ -1,7 +1,9 @@
 import React, { Suspense, lazy } from "react";
+import { css } from "emotion";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { ErrorBoundary } from "../ErrorBoundary";
 import { GlobalStyles } from "../../styles/global.styles";
+import Logo from "../../img/logo-small.svg";
 
 const Home = lazy(() => import("../../pages/Home"));
 const Queue = lazy(() => import("../../pages/Queue"));
@@ -27,6 +29,11 @@ export const App = props => {
   return (
     <Router basename={"/sabnzbd"}>
       <ErrorBoundary>
+        <Logo
+          className={css`
+            width: 48px;
+          `}
+        />
         <Nav />
         <GlobalStyles />
         <Suspense fallback={<div>Loading...</div>}>

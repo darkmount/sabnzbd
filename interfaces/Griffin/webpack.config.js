@@ -5,37 +5,41 @@ const LiveReloadPlugin = require("webpack-livereload-plugin");
 module.exports = {
   output: {
     path: path.resolve(__dirname, "templates/static"),
-    publicPath: "./static/"
+    publicPath: "./static/",
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
-          }
-        ]
-      }
-    ]
+            loader: "html-loader",
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
-      chunks: "all"
-    }
+      chunks: "all",
+    },
   },
   plugins: [
     new LiveReloadPlugin({ appendScriptTag: true }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
-      filename: path.resolve(__dirname, "templates/main.tmpl")
-    })
-  ]
+      filename: path.resolve(__dirname, "templates/main.tmpl"),
+    }),
+  ],
 };

@@ -1,6 +1,9 @@
 module.exports = {
   env: {
     browser: true,
+    node: true,
+    jest: true,
+    commonjs: true,
   },
   extends: [
     "eslint:recommended",
@@ -11,12 +14,14 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
   },
+  parser: "babel-eslint",
   parserOptions: {
-    sourceType: "module",
+    allowImportExportEverywhere: true,
     ecmaVersion: 2018,
     ecmaFeatures: {
       jsx: true,
     },
+    sourceType: "module",
   },
   settings: {
     react: {
