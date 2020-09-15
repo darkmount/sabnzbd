@@ -2,6 +2,10 @@ export const colors = {
   transparent: "transparent",
   black: "#000",
   white: "#fff",
+  brand: {
+    400: "#FFCA28",
+    500: "#FFB300",
+  },
   gray: {
     100: "#f7fafc",
     200: "#edf2f7",
@@ -11,7 +15,7 @@ export const colors = {
     600: "#718096",
     700: "#4a5568",
     800: "#2d3748",
-    900: "#1a202c"
+    900: "#1a202c",
   },
   red: {
     100: "#fff5f5",
@@ -22,7 +26,7 @@ export const colors = {
     600: "#e53e3e",
     700: "#c53030",
     800: "#9b2c2c",
-    900: "#742a2a"
+    900: "#742a2a",
   },
   orange: {
     100: "#fffaf0",
@@ -33,7 +37,7 @@ export const colors = {
     600: "#dd6b20",
     700: "#c05621",
     800: "#9c4221",
-    900: "#7b341e"
+    900: "#7b341e",
   },
   yellow: {
     100: "#fffff0",
@@ -44,7 +48,7 @@ export const colors = {
     600: "#d69e2e",
     700: "#b7791f",
     800: "#975a16",
-    900: "#744210"
+    900: "#744210",
   },
   green: {
     100: "#f0fff4",
@@ -55,7 +59,7 @@ export const colors = {
     600: "#38a169",
     700: "#2f855a",
     800: "#276749",
-    900: "#22543d"
+    900: "#22543d",
   },
   teal: {
     100: "#e6fffa",
@@ -66,7 +70,7 @@ export const colors = {
     600: "#319795",
     700: "#2c7a7b",
     800: "#285e61",
-    900: "#234e52"
+    900: "#234e52",
   },
   blue: {
     100: "#ebf8ff",
@@ -77,7 +81,7 @@ export const colors = {
     600: "#3182ce",
     700: "#2b6cb0",
     800: "#2c5282",
-    900: "#2a4365"
+    900: "#2a4365",
   },
   indigo: {
     100: "#ebf4ff",
@@ -88,7 +92,7 @@ export const colors = {
     600: "#5a67d8",
     700: "#4c51bf",
     800: "#434190",
-    900: "#3c366b"
+    900: "#3c366b",
   },
   purple: {
     100: "#faf5ff",
@@ -99,7 +103,7 @@ export const colors = {
     600: "#805ad5",
     700: "#6b46c1",
     800: "#553c9a",
-    900: "#44337a"
+    900: "#44337a",
   },
   pink: {
     100: "#fff5f7",
@@ -110,8 +114,8 @@ export const colors = {
     600: "#d53f8c",
     700: "#b83280",
     800: "#97266d",
-    900: "#702459"
-  }
+    900: "#702459",
+  },
 };
 
 export const spacing = {
@@ -133,14 +137,14 @@ export const spacing = {
   "40": "10rem",
   "48": "12rem",
   "56": "14rem",
-  "64": "16rem"
+  "64": "16rem",
 };
 
 export const screens = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
-  xl: "1280px"
+  xl: "1280px",
 };
 
 export const fontFamily = {
@@ -157,7 +161,7 @@ export const fontFamily = {
     '"Apple Color Emoji"',
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
-    '"Noto Color Emoji"'
+    '"Noto Color Emoji"',
   ],
   serif: ["Georgia", "Cambria", '"Times New Roman"', "Times", "serif"],
   mono: [
@@ -166,8 +170,8 @@ export const fontFamily = {
     "Consolas",
     '"Liberation Mono"',
     '"Courier New"',
-    "monospace"
-  ]
+    "monospace",
+  ],
 };
 
 export const fontSize = {
@@ -180,7 +184,7 @@ export const fontSize = {
   "3xl": "1.875rem",
   "4xl": "2.25rem",
   "5xl": "3rem",
-  "6xl": "4rem"
+  "6xl": "4rem",
 };
 
 export const fontWeight = {
@@ -192,7 +196,7 @@ export const fontWeight = {
   semibold: "600",
   bold: "700",
   extrabold: "800",
-  black: "900"
+  black: "900",
 };
 
 export const lineHeight = {
@@ -209,7 +213,7 @@ export const lineHeight = {
   "7": "1.75rem",
   "8": "2rem",
   "9": "2.25rem",
-  "10": "2.5rem"
+  "10": "2.5rem",
 };
 
 export const dimensions = {
@@ -221,7 +225,7 @@ export const dimensions = {
   "2/4": "50%",
   "3/4": "75%",
   full: "100%",
-  screen: "100vw"
+  screen: "100vw",
 };
 
 export const borderRadius = {
@@ -230,5 +234,5 @@ export const borderRadius = {
   default: "0.25rem",
   md: "0.375rem",
   lg: "0.5rem",
-  full: "9999px"
+  full: "9999px",
 };

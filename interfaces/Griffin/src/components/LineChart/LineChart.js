@@ -6,7 +6,8 @@ const maxValue = R.reduce(R.max, -Infinity);
 
 export const LineChart = ({
   data = [],
-  fill = colors.red["800"],
+  hiColor = colors.brand[400],
+  lowColor = colors.brand[500],
   width = 375,
   height = 100,
 }) => {
@@ -25,13 +26,12 @@ export const LineChart = ({
         width={width}
       />
       <linearGradient id={"line_chart_fill"}>
-        <stop offset="0%" stopColor="#FFCA28" />
-        <stop offset="100%" stopColor="#FFB300" />
+        <stop offset="0%" stopColor={hiColor} />
+        <stop offset="100%" stopColor={lowColor} />
       </linearGradient>
       <clipPath id={"line_chart_clip"}>
         {y.map((value, i) => (
           <rect
-            style={{ fill }}
             key={`${i}-${value}`}
             height={(value * height) / 100}
             y={height - (value * height) / 100}
@@ -43,7 +43,3 @@ export const LineChart = ({
     </svg>
   );
 };
-
-10;
-300;
-5;
